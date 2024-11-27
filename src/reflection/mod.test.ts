@@ -1,5 +1,5 @@
-import Reflection from "./mod.ts";
-import Assert from "@ph/assert";
+import { Reflection } from "./mod.ts";
+import { Assert } from "@ph/assert";
 
 Deno.test("Simple reflection", () => {
     class MyClass {

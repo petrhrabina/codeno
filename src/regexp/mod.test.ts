@@ -1,5 +1,5 @@
-import Builder, { Preset, Quantifiers } from "./mod.ts";
-import Assert from "@ph/assert";
+import { Builder, Preset, Quantifiers } from "./mod.ts";
+import { Assert } from "@ph/assert";
 
 Deno.test("capture", () => {
     Assert.same(

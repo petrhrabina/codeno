@@ -23,7 +23,7 @@ export type Placeholders = Map<Key, Value>;
  *
  * @example
  * ```ts
- * import Template from "@ph/template";
+ * import { Template } from "@ph/template";
  *
  * // Basic usage
  * let template = Template.create(`\
@@ -61,7 +61,7 @@ export type Placeholders = Map<Key, Value>;
  *
  * ```
  */
-export default class Template {
+export class Template {
     private readonly placeholders: Placeholders;
     private readonly template: string;
 

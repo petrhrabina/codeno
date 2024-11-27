@@ -35,7 +35,7 @@ interface Printer extends Callable {}
  * styledPrinter('Step 1', 'Step 2', 'Step 3'); // Outputs: Step 1 -> Step 2 -> Step 3
  * ```
  */
-export default class PrinterBuilder {
+export class PrinterBuilder {
     private options: PrinterOptions = {};
 
     private constructor() {

@@ -1,6 +1,6 @@
-import PrinterBuilder from "./mod.ts";
-import Reflection from "@ph/reflection";
-import Assert from "@ph/assert";
+import { PrinterBuilder } from "./mod.ts";
+import { Reflection } from "@ph/reflection";
+import { Assert } from "@ph/assert";
 
 Deno.test("Simple printer without any modifications", () => {
     const printer = PrinterBuilder

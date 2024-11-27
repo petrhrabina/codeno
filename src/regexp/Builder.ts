@@ -17,7 +17,7 @@ export interface BuilderInterface {
 /**
  * Builder class for constructing regular expressions
  */
-export default class Builder implements BuilderInterface {
+export class Builder implements BuilderInterface {
     private rules: string[] = [];
 
     private constructor() {}
@@ -35,7 +35,7 @@ export default class Builder implements BuilderInterface {
      * Creates a new Builder instance with initial values
      *
      * ```ts
-     * import Builder from "@ph/regexp";
+     * import { Builder } from "@ph/regexp";
      * const builder = Builder.of("a", "b"); // Creates builder with initial values 'a' and 'b'
      * ```
      *
@@ -53,7 +53,7 @@ export default class Builder implements BuilderInterface {
      * If multiple values are provided, they are joined with OR operator (|)
      *
      * ```ts
-     * import Builder from "@ph/regexp";
+     * import { Builder } from "@ph/regexp";
      * const builder = Builder.of("a", "b");
      * builder.add('a');        // Adds 'a'
      * builder.add('a', 'b');   // Adds '(a|b)'
@@ -80,7 +80,7 @@ export default class Builder implements BuilderInterface {
      * Adds a quantifier to the last added value
      *
      * ```ts
-     * import Builder from "@ph/regexp";
+     * import { Builder } from "@ph/regexp";
      * const builder = Builder.of("a", "b");
      * builder.add('a').quantifier('*');  // Matches 'a' zero or more times
      * builder.add('b').quantifier('+');  // Matches 'b' one or more times
@@ -99,7 +99,7 @@ export default class Builder implements BuilderInterface {
      * Builds and returns the final regular expression
      *
      * ```ts
-     * import Builder from "@ph/regexp";
+     * import { Builder } from "@ph/regexp";
      * const builder = Builder.of("a", "b");
      * let regex = builder.build('g');     // Returns RegExp with global flag
      * regex = builder.build();        // Returns RegExp without flags

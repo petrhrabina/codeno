@@ -1,4 +1,4 @@
-import PrinterBuilder from "./PrinterBuilder.ts";
+export { PrinterBuilder } from "./PrinterBuilder.ts";
 export {
     type Callable,
     type ColorType,
@@ -6,4 +6,3 @@ export {
     PrinterConstructor,
     type PrinterOptions,
 } from "./PrinterConstructor.ts";
-export default PrinterBuilder;

@@ -6,7 +6,7 @@ export type PresetType = string;
 /**
  * Class containing preset regular expression patterns
  */
-export default class Preset {
+export class Preset {
     /**
      * Shorthand Character Class: Matches digits (0-9)
      *

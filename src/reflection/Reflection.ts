@@ -9,7 +9,7 @@ export type Target = typeof Object;
  *
  * @example
  * ```ts
- * import Reflection from '@ph/reflection';
+ * import { Reflection } from '@ph/reflection';
  *
  * class MyClass {
  *     private static name: string;

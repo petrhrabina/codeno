@@ -12,7 +12,7 @@
         "start": "deno task check && deno run --watch main.ts",
         "check": "deno fmt src && deno lint src && deno check --doc --all src",
         "test": "deno test -A --parallel --doc",
-        "coverage": "rm -rf coverage && deno task test --coverage=coverage && deno coverage --lcov coverage > coverage/coverage.lcov && deno coverage --html coverage && deno coverage --detailed coverage"
+        "coverage": "rm -rf coverage && deno task test --coverage=coverage && deno coverage --lcov coverage > coverage/coverage.lcov && deno coverage --html coverage && deno coverage coverage"
     },
 
     "lint": {

@@ -1,5 +1,2 @@
-import { Job, Pipeline } from "./Pipeline.ts";
-export * from "./mod.mock.ts";
-
-export type { Job };
-export default Pipeline;
+export { type Job, Pipeline } from "./Pipeline.ts";
+export { DataPoolMock, JobMock } from "./mod.mock.ts";

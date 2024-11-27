@@ -12,12 +12,12 @@ await new Pipeline([
 ]).sequence();
 
 // Printer
-import PrinterBuilder from "@ph/printer";
+import { PrinterBuilder } from "@ph/printer";
 const printer = PrinterBuilder.create().build();
 printer("Hello", "World");
 
 // Reflection
-import Reflection from "@ph/reflection";
+import { Reflection } from "@ph/reflection";
 class MyClass {
     private static name: string;
     public age: number;
@@ -32,12 +32,12 @@ const target = Reflection.of(myClass);
 console.log(target.getPropertyValue("name"));
 
 // Regexp
-import Builder from "@ph/regexp";
+import { Builder } from "@ph/regexp";
 const builder = Builder.of("a", "b");
 console.log(builder);
 
 // Template
-import Template from "@ph/template";
+import { Template } from "@ph/template";
 
 // Basic usage
 const template = Template.create(`\

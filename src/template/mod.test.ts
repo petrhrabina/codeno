@@ -1,5 +1,5 @@
-import Template from "./mod.ts";
-import Assert from "@ph/assert";
+import { Template } from "./mod.ts";
+import { Assert } from "@ph/assert";
 
 Deno.test("Basic usage", () => {
     const template = Template.create(`Hello {{name}}!`).set("name", "World");

@@ -4,7 +4,7 @@ export type QuantifierType = string;
 /**
  * Class containing methods for regular expression quantifiers
  */
-export default class Quantifiers {
+export class Quantifiers {
     /**
      * Creates a quantifier that matches exactly n occurrences
      *

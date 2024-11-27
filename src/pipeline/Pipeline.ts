@@ -32,7 +32,7 @@ interface PipelineInterface {
  * Provides both synchronous and asynchronous execution strategies
  *
  * ```ts
- * import Pipeline, { DataPoolMock, Job, JobMock } from "@ph/pipeline";
+ * import { Pipeline, DataPoolMock, Job, JobMock } from "@ph/pipeline";
  *
  * const dataPool = DataPoolMock.getInstance();
  *
@@ -90,7 +90,7 @@ export class Pipeline implements PipelineInterface {
      *
      * @example
      * ```ts
-     * import Pipeline, { DataPoolMock, Job, JobMock } from "@ph/pipeline";
+     * import { Pipeline, DataPoolMock, Job, JobMock } from "@ph/pipeline";
      *
      * const dataPool = DataPoolMock.getInstance();
      *
@@ -116,7 +116,7 @@ export class Pipeline implements PipelineInterface {
      *
      * @example
      * ```ts
-     * import Pipeline, { DataPoolMock, Job, JobMock } from "@ph/pipeline";
+     * import { Pipeline, DataPoolMock, Job, JobMock } from "@ph/pipeline";
      *
      * const dataPool = DataPoolMock.getInstance();
      *

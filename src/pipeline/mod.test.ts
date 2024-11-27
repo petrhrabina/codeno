@@ -1,5 +1,5 @@
-import Pipeline, { DataPoolMock, JobMock } from "./mod.ts";
-import Assert from "@ph/assert";
+import { DataPoolMock, JobMock, Pipeline } from "./mod.ts";
+import { Assert } from "@ph/assert";
 import { delay } from "jsr:@std/async/delay";
 
 const createPipelineInstance: () => Pipeline = (): Pipeline => {

@@ -4,11 +4,11 @@ import { assert, assertEquals, assertFalse } from "jsr:@std/assert@^1.0";
  * Class providing assertion utilities for testing
  * @class
  */
-export default class Assert {
+export class Assert {
     /**
      * Asserts that a value is true
      * ```ts
-     * import Assert from "@ph/assert";
+     * import { Assert } from "@ph/assert";
      *
      * // Passes
      * const value = true;
@@ -28,7 +28,7 @@ export default class Assert {
     /**
      * Asserts that a value is false
      * ```ts
-     * import Assert from "@ph/assert";
+     * import { Assert } from "@ph/assert";
      * Assert.false(5 < 0)
      * ```
      *
@@ -42,7 +42,7 @@ export default class Assert {
     /**
      * Asserts that two values are equal using non-strict comparison
      * ```ts
-     * import Assert from "@ph/assert";
+     * import { Assert } from "@ph/assert";
      * Assert.same(1, 1)
      * ```
      *
@@ -57,7 +57,7 @@ export default class Assert {
     /**
      * Asserts that two values are equal using strict comparison
      * ```ts
-     * import Assert from "@ph/assert";
+     * import { Assert } from "@ph/assert";
      * Assert.sameArray([1, 2, 3], [1, 2, 3])
      * ```
      *
@@ -72,7 +72,7 @@ export default class Assert {
     /**
      * Asserts that a string matches a regular expression pattern
      * ```ts
-     * import Assert from "@ph/assert";
+     * import { Assert } from "@ph/assert";
      * Assert.matchRegexp(/\d+/, "123")
      * ```
      *
@@ -87,7 +87,7 @@ export default class Assert {
     /**
      * Asserts that a string does not match a regular expression pattern
      * ```ts
-     * import Assert from "@ph/assert";
+     * import { Assert } from "@ph/assert";
      * Assert.notMatchRegexp(/\d+/, "abc")
      * ```
      *
