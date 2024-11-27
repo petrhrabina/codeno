@@ -1,6 +1,6 @@
 .vscode/
 .cursorignore
 .env
-coverage/
-dist/
-main.ts
+coverage
+docs
+dist

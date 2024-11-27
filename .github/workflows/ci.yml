@@ -23,6 +23,9 @@ jobs:
             - name: Lint
               run: deno lint src
 
+            - name: Lint
+              run: deno doc --html --name="Codeno" main.ts
+
             - name: Test
               run: |
                   deno test -A --parallel --doc --coverage=./coverage **/*.test.ts
