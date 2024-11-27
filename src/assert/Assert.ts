@@ -1,4 +1,4 @@
-import { assert, assertEquals, assertFalse } from "jsr:@std/assert";
+import { assert, assertEquals, assertFalse } from "jsr:@std/assert@^1.0";
 
 /**
  * Class providing assertion utilities for testing

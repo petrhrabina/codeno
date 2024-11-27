@@ -1,5 +1,5 @@
 import Assert from "./mod.ts";
-import { assertThrows } from "jsr:@std/assert";
+import { assertThrows } from "jsr:@std/assert@^1.0";
 
 Deno.test("same", () => {
     assertThrows(() => Assert.same(1, 2));
