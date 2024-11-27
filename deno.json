@@ -1,0 +1,38 @@
+{
+    "workspace": [
+        "src/assert",
+        "src/regexp",
+        "src/pipeline",
+        "src/printer",
+        "src/reflection",
+        "src/template"
+    ],
+
+    "tasks": {
+        "start": "deno task check && deno run --watch main.ts",
+        "check": "deno fmt src && deno lint src && deno check --doc --all src",
+        "test": "deno test -A --parallel --doc",
+        "coverage": "rm -rf coverage && deno task test --coverage=coverage && deno coverage --lcov coverage > coverage/coverage.lcov && deno coverage --html coverage && deno coverage --detailed coverage"
+    },
+
+    "lint": {
+        "report": "pretty",
+        "rules": {
+            "tags": ["recommended"]
+        }
+    },
+
+    "fmt": {
+        "useTabs": false,
+        "lineWidth": 90,
+        "indentWidth": 4,
+        "semiColons": true,
+        "proseWrap": "always"
+    },
+
+    "compilerOptions": {
+        "strict": true
+    },
+
+    "exclude": ["coverage", "docs", "**/.*/"]
+}

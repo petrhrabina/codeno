@@ -1,0 +1,7 @@
+{
+    "name": "@ph/reflection",
+    "version": "1.0.0",
+    "exports": {
+        ".": "./mod.ts"
+    }
+}

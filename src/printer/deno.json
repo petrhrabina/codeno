@@ -1,0 +1,7 @@
+{
+    "name": "@ph/printer",
+    "version": "1.0.0",
+    "exports": {
+        ".": "./mod.ts"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "name": "@ph/assert",
+    "version": "1.0.0",
+    "exports": {
+        ".": "./mod.ts"
+    }
+}
