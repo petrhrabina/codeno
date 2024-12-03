@@ -5,7 +5,8 @@
     "jsr:@std/assert@1": "1.0.8",
     "jsr:@std/async@*": "1.0.8",
     "jsr:@std/fmt@1.0": "1.0.3",
-    "jsr:@std/internal@^1.0.5": "1.0.5"
+    "jsr:@std/internal@^1.0.5": "1.0.5",
+    "npm:@types/vscode@^1.95.0": "1.95.0"
   },
   "jsr": {
     "@std/assert@1.0.8": {
@@ -23,5 +24,15 @@
     "@std/internal@1.0.5": {
       "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
     }
+  },
+  "npm": {
+    "@types/vscode@1.95.0": {
+      "integrity": "sha512-0LBD8TEiNbet3NvWsmn59zLzOFu/txSlGxnv5yAFHCrhG9WvAnR3IvfHzMOs2aeWqgvNjq9pO99IUw8d3n+unw=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@types/vscode@^1.95.0"
+    ]
   }
 }

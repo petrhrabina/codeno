@@ -1,5 +1,18 @@
-import { Job } from "./mod.ts";
+import { JobInterface } from "./mod.ts";
 
+/**
+ * Mock implementation of the DataPool
+ *
+ * @example
+ * ```typescript
+ * const dataPool = DataPoolMock.getInstance();
+ * dataPool.add("job1");
+ * dataPool.add("job2");
+ * console.log(dataPool.get()); // ["job1", "job2"]
+ * ```
+ *
+ * @internal
+ */
 export class DataPoolMock {
     private static instance: DataPoolMock;
 
@@ -28,7 +41,20 @@ export class DataPoolMock {
     }
 }
 
-export class JobMock implements Job {
+/**
+ * Mock implementation of the JobInterface
+ *
+ * @example
+ * ```typescript
+ * const dataPool = DataPoolMock.getInstance();
+ * const job = new JobMock(dataPool, "job1", 1000);
+ * await job.run();
+ * console.log(dataPool.get()); // ["job1"]
+ * ```
+ *
+ * @internal
+ */
+export class JobMock implements JobInterface {
     private readonly jobName: string;
     private readonly delay: number;
     private readonly dataPool: DataPoolMock;

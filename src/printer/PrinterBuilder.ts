@@ -7,11 +7,6 @@ import {
 } from "./PrinterConstructor.ts";
 
 /**
- * Function signature for the built printer instance
- */
-interface Printer extends Callable {}
-
-/**
  * Builder class for creating customized Printer instances
  *
  * Provides a fluent interface for configuring printer options including styling,
@@ -183,7 +178,7 @@ export class PrinterBuilder {
      * printer('Success!');
      * ```
      */
-    public build(): Printer {
+    public build(): Callable {
         return PrinterConstructor.construct(this.options);
     }
 }

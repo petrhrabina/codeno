@@ -31,8 +31,16 @@
     },
 
     "compilerOptions": {
-        "strict": true
+        "strict": true,
+        "checkJs": true
     },
 
-    "exclude": ["coverage", "docs", "**/.*/"]
+    "include": [
+        "**/*.d.ts"
+    ],
+
+    "exclude": ["coverage", "docs", "**/.*/", "**/codeno/mod.d.ts"],
+    "imports": {
+        "@vscode": "npm:@types/vscode@^1.95.0"
+    }
 }

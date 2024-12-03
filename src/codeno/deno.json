@@ -1,0 +1,10 @@
+{
+    "name": "@ph/codeno",
+    "version": "0.1.0",
+    "tasks": {
+        "dev": "deno run --watch -A ./mod.ts"
+    },
+    "exports": {
+        ".": "./mod.ts"
+    }
+}

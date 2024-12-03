@@ -1,4 +1,4 @@
-import { Template } from "./mod.ts";
+import { Template } from "./Template.ts";
 import { Assert } from "@ph/assert";
 
 Deno.test("Basic usage", () => {

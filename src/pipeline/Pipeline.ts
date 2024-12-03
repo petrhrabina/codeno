@@ -3,7 +3,7 @@
  *
  * @returns {Promise<void>}
  */
-export interface Job {
+export interface JobInterface {
     run(): Promise<void> | void;
 }
 /**
@@ -31,12 +31,13 @@ interface PipelineInterface {
  * Pipeline class for executing multiple jobs
  * Provides both synchronous and asynchronous execution strategies
  *
+ * @example
  * ```ts
- * import { Pipeline, DataPoolMock, Job, JobMock } from "@ph/pipeline";
+ * import { Pipeline, DataPoolMock, JobInterface, JobMock } from "@ph/pipeline";
  *
  * const dataPool = DataPoolMock.getInstance();
  *
- * export class MyJob implements Job {
+ * export class MyJob implements JobInterface {
  *     public constructor(private readonly dataPool: DataPoolMock) {}
  *
  *   public run(): void {
@@ -69,15 +70,15 @@ interface PipelineInterface {
  * ```
  */
 export class Pipeline implements PipelineInterface {
-    private jobs: Job[];
+    private jobs: JobInterface[];
 
     /**
      * Creates a new Pipeline instance
      *
-     * @param {Job[]} jobs - Array of jobs to be executed
+     * @param {JobInterface[]} jobs - Array of jobs to be executed
      */
     public constructor(
-        jobs: Job[],
+        jobs: JobInterface[],
     ) {
         this.jobs = jobs;
     }
@@ -90,7 +91,7 @@ export class Pipeline implements PipelineInterface {
      *
      * @example
      * ```ts
-     * import { Pipeline, DataPoolMock, Job, JobMock } from "@ph/pipeline";
+     * import { Pipeline, DataPoolMock, JobInterface, JobMock } from "@ph/pipeline";
      *
      * const dataPool = DataPoolMock.getInstance();
      *
@@ -116,7 +117,7 @@ export class Pipeline implements PipelineInterface {
      *
      * @example
      * ```ts
-     * import { Pipeline, DataPoolMock, Job, JobMock } from "@ph/pipeline";
+     * import { Pipeline, DataPoolMock, JobInterface, JobMock } from "@ph/pipeline";
      *
      * const dataPool = DataPoolMock.getInstance();
      *

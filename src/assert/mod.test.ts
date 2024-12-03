@@ -1,4 +1,4 @@
-import { Assert } from "./mod.ts";
+import { Assert } from "./Assert.ts";
 import { assertThrows } from "jsr:@std/assert@^1.0";
 
 Deno.test("same", () => {
