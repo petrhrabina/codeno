@@ -1,11 +1,11 @@
 {
     "name": "@ph/reflection",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "license": "MIT",
     "exports": {
         ".": "./mod.ts"
     },
-    "exclude": [
-        "mod.test.ts"
-    ]
+    "publish": {
+        "exclude": ["mod.test.ts"]
+    }
 }

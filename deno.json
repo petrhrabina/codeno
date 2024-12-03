@@ -5,7 +5,8 @@
         "src/pipeline",
         "src/printer",
         "src/reflection",
-        "src/template"
+        "src/template",
+        "src/validator"
     ],
 
     "tasks": {

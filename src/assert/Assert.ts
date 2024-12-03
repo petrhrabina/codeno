@@ -66,7 +66,7 @@ export class Assert {
      * @throws {AssertionError} When values are not equal
      */
     public static same(expected: unknown, actual: unknown): void {
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     /**
@@ -83,7 +83,7 @@ export class Assert {
      * @throws {AssertionError} When values are not strictly equal
      */
     public static sameArray(expected: unknown[], actual: unknown[]): void {
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     /**
