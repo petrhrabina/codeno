@@ -5,7 +5,7 @@ A lightweight TypeScript reflection utility for accessing object properties, inc
 ## Installation
 
 ```ts
-import { Reflection } from "@ph4/reflection";
+import { Reflection } from "@ph/reflection";
 ```
 
 ## Features
@@ -22,7 +22,7 @@ import { Reflection } from "@ph4/reflection";
 ### Basic Example
 
 ```ts
-import { Reflection } from "@ph4/reflection";
+import { Reflection } from "@ph/reflection";
 
 class User {
     private static name: string;

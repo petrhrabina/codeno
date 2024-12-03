@@ -5,7 +5,7 @@ A TypeScript library for styled console output with a fluent builder interface.
 ## Installation
 
 ```ts
-import { PrinterBuilder } from "@ph4/printer";
+import { PrinterBuilder } from "@ph/printer";
 ```
 
 ## Features
@@ -22,7 +22,7 @@ import { PrinterBuilder } from "@ph4/printer";
 ### Basic Example
 
 ```ts
-import { PrinterBuilder } from "@ph4/printer";
+import { PrinterBuilder } from "@ph/printer";
 
 // Simple printer
 const printer = PrinterBuilder.create().build();

@@ -5,7 +5,7 @@ A lightweight TypeScript template engine with support for modifiers and dynamic 
 ## Installation
 
 ```ts
-import { Template } from "@ph4/template";
+import { Template } from "@ph/template";
 ```
 
 ## Features
@@ -22,7 +22,7 @@ import { Template } from "@ph4/template";
 ### Basic Example
 
 ```ts
-import { Template } from "@ph4/template";
+import { Template } from "@ph/template";
 
 // Simple placeholder replacement
 const template = Template.create("Hello {{name}}!")
@@ -50,7 +50,7 @@ console.log(userTemplate.render());
 ### Advanced Usage with Modifiers
 
 ```ts
-import { Template } from "@ph4/template";
+import { Template } from "@ph/template";
 
 const template = Template.create(`
 {{name:user}}: {{red:message}}
@@ -114,4 +114,4 @@ Examples:
 
 ## License
 
-MIT 
+MIT

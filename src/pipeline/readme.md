@@ -5,7 +5,7 @@ A TypeScript library for executing multiple jobs in sequence or parallel.
 ## Installation
 
 ```ts
-import { Pipeline } from "@ph4/pipeline";
+import { Pipeline } from "@ph/pipeline";
 ```
 
 ## Features
@@ -20,7 +20,7 @@ import { Pipeline } from "@ph4/pipeline";
 ### Basic Example
 
 ```ts
-import { Pipeline, DataPoolMock, JobInterface, JobMock } from "@ph4/pipeline";
+import { Pipeline, DataPoolMock, JobInterface, JobMock } from "@ph/pipeline";
 
 const dataPool = DataPoolMock.getInstance();
 

@@ -5,7 +5,7 @@ A TypeScript assertion library for testing and defensive programming with clear,
 ## Installation
 
 ```ts
-import { Assert } from "@ph4/assert";
+import { Assert } from "@ph/assert";
 ```
 
 ## Features
@@ -22,7 +22,7 @@ import { Assert } from "@ph4/assert";
 ### Basic Assertions
 
 ```ts
-import { Assert } from "@ph4/assert";
+import { Assert } from "@ph/assert";
 
 // Boolean assertions
 Assert.true(5 > 0);
@@ -36,7 +36,7 @@ Assert.sameArray([1, 2, 3], [1, 2, 3]);
 ### Regular Expression Assertions
 
 ```ts
-import { Assert } from "@ph4/assert";
+import { Assert } from "@ph/assert";
 
 // Pattern matching
 Assert.matchRegexp(/\d+/, "123");       // Passes
@@ -51,7 +51,7 @@ Assert.notMatchRegexp(emailPattern, "invalid-email");    // Passes
 ### Defensive Programming
 
 ```ts
-import { Assert } from "@ph4/assert";
+import { Assert } from "@ph/assert";
 
 function divide(a: number, b: number): number {
     Assert.true(b !== 0, "Division by zero");

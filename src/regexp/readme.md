@@ -5,7 +5,7 @@ A TypeScript library for building regular expressions with a fluent interface an
 ## Installation
 
 ```ts
-import { Builder, Preset, Quantifiers } from "@ph4/regexp";
+import { Builder, Preset, Quantifiers } from "@ph/regexp";
 ```
 
 ## Features
@@ -22,7 +22,7 @@ import { Builder, Preset, Quantifiers } from "@ph4/regexp";
 ### Basic Example
 
 ```ts
-import { Builder, Preset } from "@ph4/regexp";
+import { Builder, Preset } from "@ph/regexp";
 
 // Simple pattern matching
 const digitPattern = Builder.of(Preset.digit).build();
@@ -38,7 +38,7 @@ console.log(alphaPattern.test("Z")); // true
 ### Advanced Usage
 
 ```ts
-import { Builder, Preset, Quantifiers } from "@ph4/regexp";
+import { Builder, Preset, Quantifiers } from "@ph/regexp";
 
 // Named capturing groups
 const datePattern = Builder.of(
@@ -106,4 +106,4 @@ class Quantifiers {
 
 ## License
 
-MIT 
+MIT
