@@ -1,11 +1,12 @@
 # Template
 
-A lightweight TypeScript template engine with support for modifiers and dynamic value formatting.
+A lightweight TypeScript template engine with support for modifiers and dynamic value
+formatting.
 
 ## Installation
 
 ```ts
-import { Template } from "@ph/template";
+import { type Key, Template, type Value } from "@ph/template";
 ```
 
 ## Features
@@ -15,14 +16,13 @@ import { Template } from "@ph/template";
 - Chainable API
 - Multiple value types support (string, number, boolean, null)
 - Custom formatting functions
-- Type-safe interface
 
 ## Usage
 
 ### Basic Example
 
 ```ts
-import { Template } from "@ph/template";
+import { type Key, Template, type Value } from "@ph/template";
 
 // Simple placeholder replacement
 const template = Template.create("Hello {{name}}!")
@@ -50,7 +50,7 @@ console.log(userTemplate.render());
 ### Advanced Usage with Modifiers
 
 ```ts
-import { Template } from "@ph/template";
+import { type Key, Template, type Value } from "@ph/template";
 
 const template = Template.create(`
 {{name:user}}: {{red:message}}
@@ -73,43 +73,6 @@ console.log(template.render());
 // Output:
 // @Admin: [red]Access denied[/red]
 // PLEASE TRY AGAIN
-```
-
-## API
-
-### Template Class
-
-```ts
-class Template {
-    static create(template: string): Template;
-    set(key: Key, value: Value): Template;
-    render(): string;
-}
-```
-
-### Types
-
-```ts
-type Key = string | number;
-
-type CallableValue = (value: string) => string;
-
-type Value = string | number | boolean | null | CallableValue;
-```
-
-### Placeholder Syntax
-
-- Basic placeholder: `{{key}}`
-- Modifier placeholder: `{{modifier:value}}`
-
-Examples:
-```ts
-// Basic
-{{name}}         // Replaced with value of "name"
-
-// With modifier
-{{upper:text}}   // Applies "upper" modifier to value of "text"
-{{red:error}}    // Applies "red" modifier to value of "error"
 ```
 
 ## License

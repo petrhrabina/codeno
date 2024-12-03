@@ -1,6 +1,7 @@
 # Reflection
 
-A lightweight TypeScript reflection utility for accessing object properties, including private and static members.
+A lightweight TypeScript reflection utility for accessing object properties, including
+private and static members.
 
 ## Installation
 
@@ -37,13 +38,15 @@ class User {
 const user = new User("John", 30);
 const reflection = Reflection.of(user);
 
-console.log(reflection.getPropertyValue("name")); // Output: "John"
-console.log(reflection.getPropertyValue("age")); // Output: 30
+console.log(reflection.getPropertyValue<string>("name")); // Output: "John"
+console.log(reflection.getPropertyValue<number>("age")); // Output: 30
 ```
 
 ### Advanced Usage
 
 ```ts
+import { Reflection } from "@ph/reflection";
+
 class Database {
     private static connection: string;
     private config: Record<string, unknown>;
@@ -62,30 +65,10 @@ const db = new Database({ timeout: 5000 });
 Database.setConnection("postgres://localhost:5432");
 
 const reflection = Reflection.of(db);
-console.log(reflection.getPropertyValue("connection")); // Output: "postgres://localhost:5432"
-console.log(reflection.getPropertyValue("config")); // Output: { timeout: 5000 }
-```
-
-## API
-
-### Reflection Class
-
-```ts
-class Reflection {
-    static of(target: object): Reflection;
-    getPropertyValue<T>(propertyKey: PropertyKey): T;
-}
-```
-
-### Types
-
-```ts
-type Target = typeof Object;
-
-// Usage with type safety
-const value = reflection.getPropertyValue<string>("propertyName");
+console.log(reflection.getPropertyValue<string>("connection")); // Output: "postgres://localhost:5432"
+console.log(reflection.getPropertyValue<Record<string, unknown>>("config")); // Output: { timeout: 5000 }
 ```
 
 ## License
 
-MIT 
+MIT

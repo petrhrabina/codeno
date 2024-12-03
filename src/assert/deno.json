@@ -1,11 +1,11 @@
 {
     "name": "@ph/assert",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "license": "MIT",
     "exports": {
-        ".": "./Assert.ts"
+        ".": "./mod.ts"
     },
-    "exclude": [
-        "mod.test.ts"
-    ]
+    "publish": {
+        "exclude": ["mod.test.ts"]
+    }
 }
