@@ -1,5 +1,5 @@
 {
-    "name": "@ph/codeno",
+    "name": "@ph/command",
     "version": "1.0.0",
     "exports": {
         ".": "./mod.ts"

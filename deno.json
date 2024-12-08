@@ -6,7 +6,10 @@
         "src/printer",
         "src/reflection",
         "src/template",
-        "src/validator"
+        "src/validator",
+        "src/codeno",
+        "src/command"
+
     ],
 
     "tasks": {

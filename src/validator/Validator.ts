@@ -1,3 +1,5 @@
+export type ValidationResult = boolean | void;
+
 /**
  * Interface representing a validation method.
  * @interface
@@ -8,7 +10,7 @@ export interface Method {
      * @param {string} value - The value to validate.
      * @returns {boolean} - Returns true if the value is valid, otherwise false.
      */
-    (value: string): boolean;
+    (value: string): ValidationResult;
 }
 
 /**
@@ -69,6 +71,7 @@ export class Validator {
      * ```
      */
     public validate(value: string): boolean {
-        return this.method(value);
+        const result = this.method(value);
+        return result === undefined ? false : Boolean(result);
     }
 }
