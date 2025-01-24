@@ -30,9 +30,10 @@ export class Assert {
      * ```
      *
      * @param {boolean} value - The value to check
+     * @param {string} msg - The message to throw when the value is false
      * @throws {AssertionError} When the value is false
      */
-    public static true(value: boolean, msg: string): void {
+    public static true(value: boolean, msg?: string): void {
         assert(value, msg);
     }
 
