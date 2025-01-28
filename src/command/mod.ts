@@ -46,6 +46,14 @@ export class Command {
     }
 
     /**
+     * Add an argument to the command.
+     * @param arg The argument to add
+     */
+    public addArg(arg: string): void {
+        this.args.push(arg);
+    }
+
+    /**
      * Executes the command and returns its output as a string.
      *
      * @example
