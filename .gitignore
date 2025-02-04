@@ -4,3 +4,5 @@
 coverage
 docs
 dist
+dev.ts
+.DS_Store
