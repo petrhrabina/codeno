@@ -1,35 +1,35 @@
-# Command
-
-A lightweight TypeScript wrapper for executing shell commands with flexible output
-handling.
-
-## Installation
+A lightweight TypeScript wrapper for executing shell commands.
 
 ```ts
-import { Command } from "@ph/command";
+import Command from "@ph/command";
 ```
-
-## Features
-
-- Simple and intuitive command execution interface
-- Support for both piped and inherited output modes
-- Flexible argument handling
-- Error handling with detailed error messages
-- Command string dumping for debugging
-- Zero dependencies (built on Deno.Command)
-
-## Usage
 
 ### Example
 
 ```ts
-import { Command } from "@ph/command";
+import Command from "@ph/command";
+import { assert } from "jsr:@std/assert";
 
-const ls = new Command("ls", "-la");
+const ls = new Command("ls", {
+    args: ["-la", "--color=always"],
+});
 
-const output = await ls.pipe();
-const echo = new Command("echo", output);
-await echo.inherit();
+const dump = ls.dump();
+
+assert(dump.command === "ls");
+assert(dump.options?.args?.length === 2);
+assert(dump.options?.args?.[0] === "-la");
+assert(dump.options?.args?.[1] === "--color=always");
+
+const output = await ls.execute();
+
+assert(output.stdout !== undefined);
+assert(output.stdout.length > 0);
+assert(output.stderr !== undefined);
+assert(output.stderr.length === 0);
+assert(output.code === 0);
+assert(output.signal === null);
+assert(output.success === true);
 ```
 
 ## License

@@ -1,7 +1,6 @@
 import Assert from "../Assert.ts";
 import { assertThrows } from "jsr:@std/assert@^1.0";
 
-
 function* falseDataProvider() {
     yield {
         name: "True boolean literal returns true",

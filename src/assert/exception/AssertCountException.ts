@@ -1,7 +1,6 @@
 export class AssertCountException extends Error {
-	constructor(message: string, options?: ErrorOptions) {
-	  super(message, options);
-	  this.name = "AssertCountException";
-	}
-  }
-  
+    constructor(message: string, options?: ErrorOptions) {
+        super(message, options);
+        this.name = "AssertCountException";
+    }
+}

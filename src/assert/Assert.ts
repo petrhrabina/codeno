@@ -5,77 +5,19 @@ import { AssertInstanceOfException } from "./exception/AssertInstanceOfException
 import { AssertDefinedException } from "./exception/AssertDefinedException.ts";
 import { AssertArrayInstanceOf } from "./exception/AssertArrayInstanceOf.ts";
 
-/**
- * Class providing assertion utilities for defensive code use case coverage
- *
- * @example
- * ```ts
- * import { Assert } from "@ph/assert";
- *
- * Assert.true(true)
- * Assert.false(false)
- * Assert.count<number>([1,2,3], 3);
- * ```
- * @class
- */
 export default class Assert {
-    /**
-     * Asserts that a value is true
-     *
-     * @example
-     * ```ts
-     * import { Assert } from "@ph/assert";
-     *
-     * Assert.true(5 > 0)
-     * ```
-     *
-     * @param {unknown} expression - The expression to check
-     * @throws {AssertTrueException} When the value is false
-     */
     public static true(expression: unknown): asserts expression {
         if (expression !== true) {
             throw new AssertTrueException("Assertion true failed");
         }
     }
 
-    /**
-     * Asserts that a value is false
-     *
-     * @example
-     * ```ts
-     * import { Assert } from "@ph/assert";
-     *
-     * Assert.false(5 < 0)
-     * ```
-     *
-     * @param {unknown} expression - The expression to check
-     * @throws {AssertFalseException} When the value is true
-     */
     public static false(expression: unknown): asserts expression {
         if (expression !== false) {
             throw new AssertFalseException("Assertion false failed");
         }
     }
 
-    /**
-     * Asserts that the number of elements in an array/set/map/record matches the expected count
-     *
-     * @example
-     * ```ts
-     * import { Assert } from "@ph/assert";
-     *
-     * const myArray = new Array<number>();
-     *
-     * myArray.push(1);
-     * myArray.push(2);
-     *
-     * Assert.count<number>(myArray, 2);
-     * ```
-     *
-     * @param {Array} expression - The array to check
-     * @param {number} count - The expected number of elements
-     * @throws {AssertCountException} When the number of elements does not match the expected count
-     */
     public static count<T>(
         expression: Array<T> | Set<T> | Map<T, T> | Record<number | string, T>,
         count: number,
@@ -99,23 +41,6 @@ export default class Assert {
         }
     }
 
-    /**
-     * Make an assertion that `obj` is an instance of `type`.
-     * If not then throw.
-     *
-     * @example Usage
-     * ```ts ignore
-     * import { assertInstanceOf } from "@std/assert";
-     *
-     * assertInstanceOf(new Date(), Date); // Doesn't throw
-     * assertInstanceOf(new Date(), Number); // Throws
-     * ```
-     *
-     * @typeParam T The expected type of the object.
-     * @param actual The object to check.
-     * @param expectedType The expected class constructor.
-     * @param msg The optional message to display if the assertion fails.
-     */
     public static instanceOf<
         // deno-lint-ignore no-explicit-any
         T extends abstract new (...args: any[]) => any,
@@ -153,20 +78,6 @@ export default class Assert {
         throw new AssertInstanceOfException(msg);
     }
 
-    /**
-     * Asserts that a value is defined (not null or undefined)
-     *
-     * @example
-     * ```ts
-     * import { Assert } from "@ph/assert";
-     *
-     * Assert.defined(1);
-     * // Assert.defined(undefined); throw AssertDefinedException
-     * ```
-     *
-     * @param {T | null | undefined} expression - The expression to check
-     * @throws {AssertDefinedException} When the value is null or undefined
-     */
     public static defined(
         expression: unknown,
     ): asserts expression {
