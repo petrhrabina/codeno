@@ -1,5 +1,5 @@
 import { Command } from "./mod.ts";
-import { Assert } from "@ph/assert";
+import Assert from "@ph/assert";
 import { assert } from "jsr:@std/assert";
 
 Deno.test("pipe", async () => {

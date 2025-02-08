@@ -1,12 +1,6 @@
 {
     "workspace": [
         "src/assert",
-        "src/regexp",
-        "src/pipeline",
-        "src/printer",
-        "src/reflection",
-        "src/template",
-        "src/validator",
         "src/command"
     ],
 
