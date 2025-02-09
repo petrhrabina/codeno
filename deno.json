@@ -35,5 +35,10 @@
         "**/*.d.ts"
     ],
 
-    "exclude": ["coverage", "docs", "**/.*/", "**/codeno/mod.d.ts"]
+    "exclude": [
+        "coverage",
+        "docs",
+        "**/.*/",
+        "**/codeno/mod.d.ts"
+    ]
 }
