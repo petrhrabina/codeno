@@ -45,6 +45,20 @@ export default class Command {
         this.decorator = new TextDecoder("utf-8");
     }
 
+    /**
+     * Dumps the command and its options.
+     *
+     * @example
+     * ```ts
+     * import Command from "@ph/command";
+     * import { assert } from "jsr:@std/assert";
+     *
+     * const ls = new Command("ls", {
+     *     args: ["-la", "--color=always"],
+     * });
+     *
+     * console.log(ls.dump());
+     */
     public dump(): {
         command: string;
         options?: Deno.CommandOptions;
@@ -55,6 +69,18 @@ export default class Command {
         };
     }
 
+    /**
+     * Executes the command and returns the output.
+     *
+     * @example
+     * ```ts
+     * import Command from "@ph/command";
+     * const ls = new Command("ls", {
+     *     args: ["-la", "--color=always"],
+     * });
+     * console.log(await ls.execute());
+     * ```
+     */
     public async execute(): Promise<{
         stdout: string | undefined;
         stderr: string | undefined;
