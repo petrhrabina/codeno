@@ -6,18 +6,71 @@ import { AssertDefinedException } from "./exception/AssertDefinedException.ts";
 import { AssertArrayInstanceOf } from "./exception/AssertArrayInstanceOf.ts";
 
 export default class Assert {
+    /**
+     * Asserts that the provided expression is strictly true.
+     *
+     * @param expression - The expression to evaluate.
+     * @throws {AssertTrueException} If the expression is not strictly true.
+     *
+     * @example
+     * // No error is thrown
+     * Assert.true(true);
+     *
+     * // Throws AssertTrueException
+     * Assert.true(false);
+     */
     public static true(expression: unknown): asserts expression {
         if (expression !== true) {
             throw new AssertTrueException("Assertion true failed");
         }
     }
 
+    /**
+     * Asserts that the provided expression is strictly false.
+     *
+     * @param expression - The expression to evaluate.
+     * @throws {AssertFalseException} If the expression is not strictly false.
+     *
+     * @example
+     * // No error is thrown
+     * Assert.false(false);
+     *
+     * // Throws AssertFalseException
+     * Assert.false(true);
+     */
     public static false(expression: unknown): asserts expression {
         if (expression !== false) {
             throw new AssertFalseException("Assertion false failed");
         }
     }
 
+    /**
+     * Asserts that the count of elements in a collection matches the expected count.
+     *
+     * The collection can be an Array, Set, Map, or a Record.
+     *
+     * @template T - The type of elements in the collection.
+     * @param expression - The collection whose count is to be checked.
+     * @param count - The expected number of elements or properties.
+     * @throws {AssertCountException} If the actual count does not match the expected count.
+     *
+     * @example
+     * // For Array
+     * const arr = [1, 2, 3];
+     * Assert.count(arr, 3); // No error thrown
+     *
+     * // For Set
+     * const set = new Set([1, 2, 3]);
+     * Assert.count(set, 3); // No error thrown
+     *
+     * // For Map
+     * const map = new Map([[1, "a"], [2, "b"], [3, "c"]]);
+     * Assert.count(map, 3); // No error thrown
+     *
+     * // For Record
+     * const record = { a: 1, b: 2, c: 3 };
+     * Assert.count(record, 3); // No error thrown
+     */
     public static count<T>(
         expression: Array<T> | Set<T> | Map<T, T> | Record<number | string, T>,
         count: number,
@@ -41,6 +94,23 @@ export default class Assert {
         }
     }
 
+    /**
+     * Asserts that a given value is an instance of the specified constructor.
+     *
+     * @template T - The type corresponding to the expected constructor.
+     * @param actual - The value to check.
+     * @param expectedType - The constructor function to validate against.
+     * @param msg - Optional additional message for the error.
+     * @throws {AssertInstanceOfException} If the value is not an instance of the expected type.
+     *
+     * @example
+     * // No error is thrown
+     * const date = new Date();
+     * Assert.instanceOf(date, Date);
+     *
+     * // Throws AssertInstanceOfException since date is not an instance of Number
+     * Assert.instanceOf(date, Number);
+     */
     public static instanceOf<
         // deno-lint-ignore no-explicit-any
         T extends abstract new (...args: any[]) => any,
@@ -78,6 +148,21 @@ export default class Assert {
         throw new AssertInstanceOfException(msg);
     }
 
+    /**
+     * Asserts that the provided expression is defined (i.e., not null or undefined).
+     *
+     * @param expression - The expression to validate.
+     * @throws {AssertDefinedException} If the expression is undefined or null.
+     *
+     * @example
+     * // No error thrown
+     * Assert.defined(42);
+     * Assert.defined("Hello");
+     *
+     * // Throws AssertDefinedException
+     * Assert.defined(undefined);
+     * Assert.defined(null);
+     */
     public static defined(
         expression: unknown,
     ): asserts expression {
@@ -86,6 +171,33 @@ export default class Assert {
         }
     }
 
+    /**
+     * Asserts that every element in a collection is an instance of the specified type.
+     *
+     * The collection can be an Array, Set, Map, or a Record.
+     *
+     * @template T - The type of elements in the collection.
+     * @param expression - The collection containing elements to check.
+     * @param instanceType - The constructor function that all elements should be an instance of.
+     * @throws {AssertArrayInstanceOf} If any element is not an instance of the specified type.
+     *
+     * @example
+     * // For Array
+     * const arr = [new Date(), new Date()];
+     * Assert.arrayInstanceOf(arr, Date); // No error thrown
+     *
+     * // For Set
+     * const set = new Set([new Date(), new Date()]);
+     * Assert.arrayInstanceOf(set, Date); // No error thrown
+     *
+     * // For Map
+     * const map = new Map<string, Date>([["today", new Date()]]);
+     * Assert.arrayInstanceOf(map, Date); // No error thrown
+     *
+     * // For Record
+     * const record = { today: new Date(), tomorrow: new Date() };
+     * Assert.arrayInstanceOf(record, Date); // No error thrown
+     */
     public static arrayInstanceOf<T>(
         expression: Array<T> | Set<T> | Map<T, T> | Record<number | string, T>,
         instanceType: new (...args: unknown[]) => unknown,
