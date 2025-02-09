@@ -13,11 +13,10 @@ export default class Assert {
      * @throws {AssertTrueException} If the expression is not strictly true.
      *
      * @example
-     * // No error is thrown
+     * ```ts
+     * import Assert from "@ph/assert";
      * Assert.true(true);
-     *
-     * // Throws AssertTrueException
-     * Assert.true(false);
+     * ```
      */
     public static true(expression: unknown): asserts expression {
         if (expression !== true) {
@@ -32,11 +31,10 @@ export default class Assert {
      * @throws {AssertFalseException} If the expression is not strictly false.
      *
      * @example
-     * // No error is thrown
+     * ```ts
+     * import Assert from "@ph/assert";
      * Assert.false(false);
-     *
-     * // Throws AssertFalseException
-     * Assert.false(true);
+     * ```
      */
     public static false(expression: unknown): asserts expression {
         if (expression !== false) {
@@ -55,21 +53,10 @@ export default class Assert {
      * @throws {AssertCountException} If the actual count does not match the expected count.
      *
      * @example
-     * // For Array
-     * const arr = [1, 2, 3];
-     * Assert.count(arr, 3); // No error thrown
-     *
-     * // For Set
-     * const set = new Set([1, 2, 3]);
-     * Assert.count(set, 3); // No error thrown
-     *
-     * // For Map
-     * const map = new Map([[1, "a"], [2, "b"], [3, "c"]]);
-     * Assert.count(map, 3); // No error thrown
-     *
-     * // For Record
-     * const record = { a: 1, b: 2, c: 3 };
-     * Assert.count(record, 3); // No error thrown
+     * ```ts
+     * import Assert from "@ph/assert";
+     * Assert.count([1, 2, 3], 3);
+     * ```
      */
     public static count<T>(
         expression: Array<T> | Set<T> | Map<T, T> | Record<number | string, T>,
@@ -104,12 +91,10 @@ export default class Assert {
      * @throws {AssertInstanceOfException} If the value is not an instance of the expected type.
      *
      * @example
-     * // No error is thrown
-     * const date = new Date();
-     * Assert.instanceOf(date, Date);
-     *
-     * // Throws AssertInstanceOfException since date is not an instance of Number
-     * Assert.instanceOf(date, Number);
+     * ```ts
+     * import Assert from "@ph/assert";
+     * Assert.instanceOf(new Date(), Date);
+     * ```
      */
     public static instanceOf<
         // deno-lint-ignore no-explicit-any
@@ -155,13 +140,11 @@ export default class Assert {
      * @throws {AssertDefinedException} If the expression is undefined or null.
      *
      * @example
-     * // No error thrown
+     * ```ts
+     * import Assert from "@ph/assert";
      * Assert.defined(42);
      * Assert.defined("Hello");
-     *
-     * // Throws AssertDefinedException
-     * Assert.defined(undefined);
-     * Assert.defined(null);
+     * ```
      */
     public static defined(
         expression: unknown,
@@ -182,21 +165,10 @@ export default class Assert {
      * @throws {AssertArrayInstanceOf} If any element is not an instance of the specified type.
      *
      * @example
-     * // For Array
-     * const arr = [new Date(), new Date()];
-     * Assert.arrayInstanceOf(arr, Date); // No error thrown
-     *
-     * // For Set
-     * const set = new Set([new Date(), new Date()]);
-     * Assert.arrayInstanceOf(set, Date); // No error thrown
-     *
-     * // For Map
-     * const map = new Map<string, Date>([["today", new Date()]]);
-     * Assert.arrayInstanceOf(map, Date); // No error thrown
-     *
-     * // For Record
-     * const record = { today: new Date(), tomorrow: new Date() };
-     * Assert.arrayInstanceOf(record, Date); // No error thrown
+     * ```ts
+     * import Assert from "@ph/assert";
+     * Assert.arrayInstanceOf([new Date(), new Date()], Date);
+     * ```
      */
     public static arrayInstanceOf<T>(
         expression: Array<T> | Set<T> | Map<T, T> | Record<number | string, T>,
