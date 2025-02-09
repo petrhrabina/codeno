@@ -49,7 +49,10 @@ export default class Command {
         this.decorator = new TextDecoder("utf-8");
     }
 
-    public dump() {
+    public dump(): {
+        command: string;
+        options?: Deno.CommandOptions;
+    } {
         return {
             command: this.command,
             options: this.options,
