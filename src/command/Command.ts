@@ -1,5 +1,3 @@
-import Assert from "jsr:@ph/assert";
-
 /**
  * @example
  * ```ts
@@ -41,8 +39,6 @@ export default class Command {
         command: string,
         options?: Deno.CommandOptions,
     ) {
-        Assert.true(command.length > 0);
-
         this.denoCommand = new Deno.Command(command, options);
         this.command = command;
         this.options = options;
