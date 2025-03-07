@@ -43,13 +43,13 @@ export class Command {
         )).output();
     }
 
-    public static async getContainerId(): Promise<string> {
+    public static async getContainerId(name: string): Promise<string> {
         const result = await Command.pipe(
             "docker",
             "ps",
             "-q",
             "-f",
-            "name=favi_app",
+            `name=${name}`,
         );
         if (!result.success) {
             console.error(colors.bold.underline.red(`🚨 ${result.error.toString()}`));
@@ -59,12 +59,13 @@ export class Command {
 
     public static async pipeInContainer(
         command: string,
+        containerName: string,
         beforeDump?: () => void,
     ): Promise<void> {
         const result = await Command.pipe(
             "docker",
             "exec",
-            await Command.getContainerId(),
+            await Command.getContainerId(containerName),
             "sh",
             "-c",
             command,
@@ -82,29 +83,37 @@ export class Command {
         }
     }
 
-    public static async pipeFromContainer(command: string): Promise<PipeResult> {
+    public static async pipeFromContainer(
+        command: string,
+        containerName: string,
+    ): Promise<PipeResult> {
         return await Command.pipe(
             "docker",
             "exec",
-            await Command.getContainerId(),
+            await Command.getContainerId(containerName),
             "sh",
             "-c",
             command,
         );
     }
 
-    public static async inheritInContainer(command: string): Promise<void> {
+    public static async inheritInContainer(
+        command: string,
+        containerName: string,
+    ): Promise<void> {
         await Command.inherit(
             "docker",
             "exec",
-            await Command.getContainerId(),
+            await Command.getContainerId(containerName),
             "sh",
             "-c",
             command,
         );
     }
 
-    public static async pipeInWorkingDirectory(command: string): Promise<void> {
+    public static async pipeInWorkingDirectory(
+        command: string,
+    ): Promise<void> {
         const result = await Command.pipe(
             "sh",
             "-c",
