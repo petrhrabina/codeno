@@ -1,107 +1,136 @@
-/**
- * @example
- * ```ts
- * import Command from "@ph/command";
- * import { assert } from "jsr:@std/assert";
- *
- * const ls = new Command("ls", {
- *     args: ["-la", "--color=always"],
- * });
- *
- * const dump = ls.dump();
- *
- * assert(dump.command === "ls");
- * assert(dump.options?.args?.length === 2);
- * assert(dump.options?.args?.[0] === "-la");
- * assert(dump.options?.args?.[1] === "--color=always");
- *
- * const output = await ls.execute();
- *
- * assert(output.stdout !== undefined);
- * assert(output.stdout.length > 0);
- * assert(output.stderr !== undefined);
- * assert(output.stderr.length === 0);
- * assert(output.code === 0);
- * assert(output.signal === null);
- * assert(output.success === true);
- * ```
- *
- * A class for executing shell commands with flexible output handling.
- * Provides methods for both piped and inherited output modes.
- */
-export default class Command {
-    private readonly denoCommand: Deno.Command;
-    private readonly command: string;
-    private readonly options?: Deno.CommandOptions;
-    private readonly decorator: TextDecoder;
+import { colors } from "jsr:@cliffy/ansi@^1.0.0-rc.7/colors";
 
-    public constructor(
-        command: string,
-        options?: Deno.CommandOptions,
-    ) {
-        this.denoCommand = new Deno.Command(command, options);
-        this.command = command;
-        this.options = options;
-        this.decorator = new TextDecoder("utf-8");
-    }
+export enum StdType {
+    Piped = "piped",
+    Inherit = "inherit",
+    Null = "null",
+}
 
-    /**
-     * Dumps the command and its options.
-     *
-     * @example
-     * ```ts
-     * import Command from "@ph/command";
-     * import { assert } from "jsr:@std/assert";
-     *
-     * const ls = new Command("ls", {
-     *     args: ["-la", "--color=always"],
-     * });
-     *
-     * console.log(ls.dump());
-     */
-    public dump(): {
-        command: string;
-        options?: Deno.CommandOptions;
-    } {
-        return {
-            command: this.command,
-            options: this.options,
-        };
-    }
+export type PipeResult = {
+    success: boolean;
+    output: string;
+    error: string;
+};
+export class Command {
+    public static async pipe(command: string, ...args: string[]): Promise<PipeResult> {
+        const output = await (new Deno.Command(
+            command,
+            {
+                args: args,
+                stdout: StdType.Piped,
+                stderr: StdType.Piped,
+            },
+        )).output();
 
-    /**
-     * Executes the command and returns the output.
-     *
-     * @example
-     * ```ts
-     * import Command from "@ph/command";
-     * const ls = new Command("ls", {
-     *     args: ["-la", "--color=always"],
-     * });
-     * console.log(await ls.execute());
-     * ```
-     */
-    public async execute(): Promise<{
-        stdout: string | undefined;
-        stderr: string | undefined;
-        code: number;
-        signal: Deno.Signal | null;
-        success: boolean;
-    }> {
-        const output = await this.denoCommand.output();
+        const decodedOutput = new TextDecoder().decode(output.stdout);
+        const decodedError = new TextDecoder().decode(output.stderr);
 
         return {
-            stdout: this.options?.stdout === "inherit" ||
-                    this.options?.stdout === "null"
-                ? undefined
-                : this.decorator.decode(output.stdout),
-            stderr: this.options?.stderr === "inherit" ||
-                    this.options?.stderr === "null"
-                ? undefined
-                : this.decorator.decode(output.stderr),
-            code: output.code,
-            signal: output.signal,
             success: output.success,
+            output: decodedOutput,
+            error: decodedError,
         };
+    }
+
+    public static async inherit(command: string, ...args: string[]): Promise<void> {
+        await (new Deno.Command(
+            command,
+            {
+                args: args,
+                stdout: StdType.Inherit,
+                stderr: StdType.Inherit,
+            },
+        )).output();
+    }
+
+    public static async getContainerId(): Promise<string> {
+        const result = await Command.pipe(
+            "docker",
+            "ps",
+            "-q",
+            "-f",
+            "name=favi_app",
+        );
+        if (!result.success) {
+            console.error(colors.bold.underline.red(`🚨 ${result.error.toString()}`));
+        }
+        return result.output.trim();
+    }
+
+    public static async pipeInContainer(
+        command: string,
+        beforeDump?: () => void,
+    ): Promise<void> {
+        const result = await Command.pipe(
+            "docker",
+            "exec",
+            await Command.getContainerId(),
+            "sh",
+            "-c",
+            command,
+        );
+
+        if (beforeDump) {
+            beforeDump();
+        }
+
+        if (!result.success) {
+            console.log(colors.bold.red(`${result.output.toString()}`));
+            console.log(colors.bold.red(`${result.error.toString()}`));
+        } else {
+            console.log(colors.dim(`${result.output.toString()}`));
+        }
+    }
+
+    public static async pipeFromContainer(command: string): Promise<PipeResult> {
+        return await Command.pipe(
+            "docker",
+            "exec",
+            await Command.getContainerId(),
+            "sh",
+            "-c",
+            command,
+        );
+    }
+
+    public static async inheritInContainer(command: string): Promise<void> {
+        await Command.inherit(
+            "docker",
+            "exec",
+            await Command.getContainerId(),
+            "sh",
+            "-c",
+            command,
+        );
+    }
+
+    public static async pipeInWorkingDirectory(command: string): Promise<void> {
+        const result = await Command.pipe(
+            "sh",
+            "-c",
+            command,
+        );
+
+        if (!result.success) {
+            console.log(colors.bold.red(`${result.output.toString()}`));
+            console.log(colors.bold.red(`${result.error.toString()}`));
+        } else {
+            console.log(colors.dim(`${result.output.toString()}`));
+        }
+    }
+
+    public static async pipeFromWorkingDirectory(command: string): Promise<PipeResult> {
+        const result = await Command.pipe(
+            "sh",
+            "-c",
+            command,
+        );
+
+        if (!result.success) {
+            console.log(colors.bold.red(`${result.output.toString()}`));
+            console.log(colors.bold.red(`${result.error.toString()}`));
+        }
+
+        return result;
     }
 }
